@@ -4,7 +4,12 @@ var ROUTER;
     var status = {};
     var getStatus;
 
-    getStatus = function(page){
+    getStatus = function(ag){
+        var page, idx;
+
+        page = ag[0];
+        idx = ag.length > 1 ? ag[1] : 0;            // view처럼 idx 필요할 때 파라미터로 넘길 수 있도록
+console.log(page);        
         switch(page){
             case ('MAIN' || '' || undefined):
                 status = {
@@ -37,7 +42,7 @@ var ROUTER;
                     tit: '콘텐츠',
                     cb: function(){
                         if(arguments[0] === 'destroy') VIEW.destroy();
-                        else VIEW.init();
+                        else VIEW.init(idx);
                     }
                 };
                 break;
@@ -58,14 +63,14 @@ var ROUTER;
                 }
             }
         },
-        go: function(page){
+        go: function(){
             if(status.url !== undefined) {
                 status.cb('destroy');
             }
-            getStatus(page);
+            
+            getStatus(arguments);
             history.pushState(status.name, status.tit, hostname + status.url);
             status.cb();
-
         }
     };
 })();
