@@ -48,6 +48,8 @@ LIST = (function(){
 		var liLength = 5;
 		var i;
 
+		DESTROY.container();
+
 		for(i=0; i<liLength; i++){
 			var li = document.createElement('li');
 			var a = document.createElement('a');
@@ -128,7 +130,7 @@ DESTROY = (function(){
 		var wrap, container;
 		wrap = document.getElementById('wrap');
 		container = document.getElementById('container');
-console.log('container');
+console.log(container);
 		if(wrap.children.length > 0) wrap.removeChild(container); 
 	};
 

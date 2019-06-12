@@ -10,20 +10,19 @@ var ROUTER;
             LIST.init();
         },
         '/view': function(idx){
-            console.log(idx);
-            VIEW.init(idx);
+            if(idx !== undefined) VIEW.init(idx);
         }
     };
 
     ROUTER = {
         init: function(){
-            var url = arguments[0] !== undefined ? arguments[0] : '/';      // arguments[0] 은 url
+            var url = arguments[0] || '/';      // arguments[0] 은 url, arguments[1] 은 idx
 
             window.onpopstate = function(e){
-                router[e.state](arguments[1]);
+                router[e.state['url']](e.state['idx']);
             }
 
-            history.pushState(url, null, url);
+            history.pushState({'url':url, 'idx':arguments[1]}, null, url);
             router[url](arguments[1]);              
         }
     };
