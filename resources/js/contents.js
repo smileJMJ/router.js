@@ -10,11 +10,10 @@ MAIN = (function(){
 	var makeCon = function(){
 		var img = document.createElement('img');
 		var a = document.createElement('a');
-		var url;
 
 		img.src = '/resources/img/main.jpg';
 		img.width = 500;
-		url = a.href = '/list';
+		a.href = '/list';
 		a.text = '리스트로 이동';
 		a.onclick = function(e){
 			e.preventDefault();
@@ -68,7 +67,7 @@ LIST = (function(){
 			ul.appendChild(li);
 		}
 
-		btnHome.href = '/';
+		btnHome.href = '/index.html';
 		btnHome.text = '홈으로 이동';
 		btnHome.onclick = function(e){
 			e.preventDefault();
@@ -131,7 +130,6 @@ DESTROY = (function(){
 		var wrap, container;
 		wrap = document.getElementById('wrap');
 		container = document.getElementById('container');
-console.log(container);
 		if(wrap.children.length > 0) wrap.removeChild(container); 
 	};
 
