@@ -10,10 +10,11 @@ MAIN = (function(){
 	var makeCon = function(){
 		var img = document.createElement('img');
 		var a = document.createElement('a');
+		var url;
 
 		img.src = '/resources/img/main.jpg';
 		img.width = 500;
-		a.href = '/list';
+		url = a.href = '/list';
 		a.text = '리스트로 이동';
 		a.onclick = function(e){
 			e.preventDefault();
@@ -67,7 +68,7 @@ LIST = (function(){
 			ul.appendChild(li);
 		}
 
-		btnHome.href = '/index.html';
+		btnHome.href = '/';
 		btnHome.text = '홈으로 이동';
 		btnHome.onclick = function(e){
 			e.preventDefault();
