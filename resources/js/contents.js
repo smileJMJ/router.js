@@ -1,6 +1,7 @@
 var MAIN;
 var LIST;
 var VIEW;
+var DESTROY;
 
 // MAIN
 MAIN = (function(){
@@ -11,15 +12,14 @@ MAIN = (function(){
 		var a = document.createElement('a');
 		var url;
 
-		img.src = 'resources/img/main.jpg';
+		img.src = '/resources/img/main.jpg';
 		img.width = 500;
 		url = a.href = '/list';
 		a.text = '리스트로 이동';
 		a.onclick = function(e){
 			e.preventDefault();
-			MAIN.destroy();
-			console.log(url)
-			ROUTER.go(url);
+			DESTROY.container();
+			ROUTER.init('/list');
 		};
 
 		container.appendChild(img);
@@ -33,11 +33,8 @@ MAIN = (function(){
 			container = document.createElement('div');
 			container.id = 'container';
 
+			DESTROY.container();
 			makeCon();
-		},
-		destroy: function(){
-			if(wrap.children.length <= 0) return;
-			wrap.removeChild(container); 
 		}
 	};
 })();
@@ -52,6 +49,8 @@ LIST = (function(){
 		var liLength = 5;
 		var i;
 
+		DESTROY.container();
+
 		for(i=0; i<liLength; i++){
 			var li = document.createElement('li');
 			var a = document.createElement('a');
@@ -62,7 +61,7 @@ LIST = (function(){
 			a.onclick = function(e){
 				e.preventDefault();
 				var idx = Number(this.dataset.index);
-				ROUTER.go('/view', idx);
+				ROUTER.init('/view', idx);
 			};
 
 			li.appendChild(a);
@@ -73,8 +72,8 @@ LIST = (function(){
 		btnHome.text = '홈으로 이동';
 		btnHome.onclick = function(e){
 			e.preventDefault();
-			LIST.destroy();
-			ROUTER.go('MAIN');
+			DESTROY.container();
+			ROUTER.init('/');
 		};
 
 		container.appendChild(ul);
@@ -89,10 +88,6 @@ LIST = (function(){
 			container.id = 'container';
 
 			makeCon();
-		},
-		destroy: function(){
-			if(wrap.children.length <= 0) return;
-			wrap.removeChild(container); 
 		}
 	};
 })();
@@ -115,11 +110,33 @@ VIEW = (function(){
 			container = document.createElement('div');
 			container.id = 'container';
 
+			DESTROY.container();
 			makeCon(idx);
-		},
-		destroy: function(){
-			if(wrap.children.length <= 0) return;
-			wrap.removeChild(container); 
 		}
 	};
+})();
+
+DESTROY = (function(){
+	var all, container;
+
+	all = function(){
+		var body, wrap;
+		body = document.body;
+		wrap = document.getElementById('wrap');
+
+		if(body.children.length > 0) body.removeChild(wrap);
+	};
+
+	container = function(){
+		var wrap, container;
+		wrap = document.getElementById('wrap');
+		container = document.getElementById('container');
+console.log(container);
+		if(wrap.children.length > 0) wrap.removeChild(container); 
+	};
+
+	return {
+		all: all,
+		container: container
+	}
 })();
