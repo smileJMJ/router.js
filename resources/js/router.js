@@ -19,7 +19,7 @@ var ROUTER;
             var url = arguments[0] || '/';      // arguments[0] 은 url, arguments[1] 은 idx
 
             window.onpopstate = function(e){
-                router[e.state['url']](e.state['idx']);
+                if(e.state) router[e.state['url']](e.state['idx']);
             }
 
             history.pushState({'url':url, 'idx':arguments[1]}, null, url);
