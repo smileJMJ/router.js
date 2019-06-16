@@ -130,7 +130,6 @@ DESTROY = (function(){
 		var wrap, container;
 		wrap = document.getElementById('wrap');
 		container = document.getElementById('container');
-console.log(container);
 		if(wrap.children.length > 0) wrap.removeChild(container); 
 	};
 
