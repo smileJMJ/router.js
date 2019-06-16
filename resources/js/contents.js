@@ -9,15 +9,17 @@ MAIN = (function(){
 	var makeCon = function(){
 		var img = document.createElement('img');
 		var a = document.createElement('a');
+		var url;
 
 		img.src = 'resources/img/main.jpg';
 		img.width = 500;
-		a.href = '/list';
+		url = a.href = '/list';
 		a.text = '리스트로 이동';
 		a.onclick = function(e){
 			e.preventDefault();
 			MAIN.destroy();
-			ROUTER.go('LIST');
+			console.log(url)
+			ROUTER.go(url);
 		};
 
 		container.appendChild(img);
@@ -60,14 +62,14 @@ LIST = (function(){
 			a.onclick = function(e){
 				e.preventDefault();
 				var idx = Number(this.dataset.index);
-				ROUTER.go('VIEW', idx);
+				ROUTER.go('/view', idx);
 			};
 
 			li.appendChild(a);
 			ul.appendChild(li);
 		}
 
-		btnHome.href = '/index.html';
+		btnHome.href = '/';
 		btnHome.text = '홈으로 이동';
 		btnHome.onclick = function(e){
 			e.preventDefault();
