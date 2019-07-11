@@ -1,0 +1,26 @@
+{
+  "name": "router.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gulp-connect": "^5.7.0",
+    "gulp": "^4.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "browser":{
+      "fs": false
+    },
+  "scripts": {
+    "start": "node app.js",
+    "build": "webpack -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

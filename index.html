@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Router.js</title>
+	<style type="text/css">
+	* {margin:0; padding:0; color:#333;}
+	a {text-decoration: none;}
+	li {list-style:none; margin-bottom:5px;}
+	</style>
+	<script type="text/javascript" src="dist/bundle.js"></script>
+</head>
+<body>
+	<div id="wrap"></div>
+	<!-- <script type="text/javascript" src="/resources/js/router.js"></script>
+	<script type="text/javascript" src="/resources/js/contents.js"></script>
+	<script type="text/javascript">
+	window.onload = function(){
+		var url = location.pathname;
+		ROUTER.init(url);
+	};
+	</script> -->
+
+	<script>
+	var checkJSLoading = (function(){
+		var JSLOADING = function(opt){
+			this.jsFile = opt.jsFile;
+			this.callback = opt.callback;
+		};
+
+		var Fn = JSLOADING.prototype;
+
+		Fn.init = function(opt){
+			var jsLoading = new JSLOADING(opt);
+			var i = 0;
+			
+			if(jsLoading.jsFile.length > 0) add();
+
+			function add(){
+				if(i >= jsLoading.jsFile.length) {
+					jsLoading.callback();
+					return;
+				}
+				var script = document.createElement('script');
+				script.src = jsLoading.jsFile[i];
+				document.body.append(script);
+				script.onload = function(){
+					i++;
+					add();
+				};
+			}
+		};
+
+		return Fn;
+	})();
+
+	checkJSLoading.init({
+		jsFile: [
+			'/resources/js/contents.js',
+			'/resources/js/router.js'
+		],
+		callback: function(){
+			var url = location.pathname;
+			ROUTER.init(url);
+		}
+	});
+
+	
+	</script>
+</body>
+</html>
